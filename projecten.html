@@ -11,22 +11,54 @@
 
   <nav class="navbar">
     <div class="logo">
-      <img src="images/logo2.png" alt="Logo">
+      <a href="index.html"><img src="images/logo2.png" alt="Logo"></a>
     </div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="#">Projecten</a></li>
-      <li><a href="#">Over Mij</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="projecten.html">Projecten</a></li>
+      <li><a href="overmij.html">Over Mij</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
-  <main>
-    <section class="hero">
-      <h1>Welkom!</h1>
-      <p></p>
-    </section>
-  </main>
+<div class="slideshow">
+  <div class="slide active">
+    <h2>Portfolio</h2>
+    <p>Een mooie Portfolio website, </p>
+    <a href="index.html"><img src="images/943329.png" alt="Weather App Screenshot"></a>
+  </div>
+  <div class="slide">
+    <h2>Task Manager</h2>
+    <p>A task management tool built with React and Node.js.</p>
+    <img src="task-manager-screenshot.png" alt="Task Manager Screenshot">
+  </div>
+  
+  <button onclick="prevSlide()"><img src="images/back.png"></button>
+  <button onclick="nextSlide()"><img src="images/next.png"></button>
+</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+
+  function prevSlide() {
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+  }
+
+  showSlide(current); // initial display
+</script>
 
 </body>
 </html>
