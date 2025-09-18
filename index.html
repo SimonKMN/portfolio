@@ -25,11 +25,97 @@
         <h1>Ik ben Simon Kooijman</h1>
         <h1>Software Developer in opleiding</h1>
         <a href="projecten.html"><button class="home-button">Projecten</button></a>
-        <a href="skills.html"><button class="home-button">Skills</button></a>
         </div>
         <div class="foto">
-            <img class="fotomij" src="images/fotomij.jpeg" alt="foto">
+            <img class="fotomij" src="images/fotomij.png" alt="foto">
         </div>
     </div>
+
+    <div class="skills-section">
+    <h1>Mijn Skills</h1>
+    <div class="skills-grid">
+      <div class="skill-card" data-skill="html">
+        <img src="images/html.png" alt="HTML" class="skill-img">
+      </div>
+      <div class="skill-card" data-skill="css">
+        <img src="images/css.png" alt="CSS" class="skill-img">
+      </div>
+      <div class="skill-card" data-skill="javascript">
+        <img src="images/javascript.png" alt="JavaScript" class="skill-img">
+      </div>
+      <!-- Voeg meer skill-afbeeldingen toe indien gewenst -->
+    </div>
+</div>
+
+<!-- Modal for skill info -->
+<div id="skillModal" class="skill-modal">
+  <div class="skill-modal-content">
+    <span class="skill-modal-close">&times;</span>
+    <img id="modalSkillImg" src="" alt="" class="skill-img" style="width:100px;height:100px;">
+    <h2 id="modalSkillTitle"></h2>
+    <p id="modalSkillDesc"></p>
+    <div id="modalSkillStats"></div>
+  </div>
+</div>
+
+<div class="welkom">
+  <h1>Welkom op mijn website!</h1>
+  <p>
+Op deze website zet ik al mijn projecten neer.<br> 
+Je kan hier niet alleen mijn projecten voor mijn opleiding zien,<br>
+Maar ook mijn skills en een stukje over mijzelf.<br>
+Mijn skills zijn hierboven uitgewerkt, Klik er maar eens op!<br>
+Mocht je meer over mij willen weten klik dan op Over Mij!</p>
+</div>
+
+<script>
+const skillData = {
+  html: {
+    title: "HTML",
+    img: "images/html.png",
+    desc: "HTML is de basis van elke webpagina. Ik beheers HTML en moderne webstandaarden.",
+    stats: { "Ervaring": "2 jaar", "Niveau": "Gevorderd", "Projecten": "2" }
+  },
+  css: {
+    title: "CSS",
+    img: "images/css.png",
+    desc: "Met CSS maak ik websites mooi en responsief. Flexbox, en animaties zijn mijn specialiteit.",
+    stats: { "Ervaring": "2 jaar", "Niveau": "Gevorderd", "Projecten": "2" }
+  },
+  javascript: {
+    title: "JavaScript",
+    img: "images/javascript.png",
+    desc: "JavaScript zorgt voor interactiviteit. Ik werk met vanilla JS.",
+    stats: { "Ervaring": "0,5 jaar", "Niveau": "Beginner", "Projecten": "0" }
+  }
+  // Voeg meer skills toe indien gewenst
+};
+
+document.querySelectorAll('.skill-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const skill = card.getAttribute('data-skill');
+    const data = skillData[skill];
+    if (data) {
+      document.getElementById('modalSkillImg').src = data.img;
+      document.getElementById('modalSkillImg').alt = data.title;
+      document.getElementById('modalSkillTitle').textContent = data.title;
+      document.getElementById('modalSkillDesc').textContent = data.desc;
+      document.getElementById('modalSkillStats').innerHTML = Object.entries(data.stats)
+        .map(([k,v]) => `<strong>${k}:</strong> ${v}`)
+        .join('<br>');
+      document.getElementById('skillModal').style.display = 'block';
+    }
+  });
+});
+
+document.querySelector('.skill-modal-close').onclick = function() {
+  document.getElementById('skillModal').style.display = 'none';
+};
+window.onclick = function(event) {
+  if (event.target == document.getElementById('skillModal')) {
+    document.getElementById('skillModal').style.display = 'none';
+  }
+};
+</script>
 </body>
 </html>
